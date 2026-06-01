@@ -5,10 +5,13 @@ import posthog from 'posthog-js';
 
 let initialized = false;
 
-function initPosthog(token?: string, host?: string) {
+function initPosthog() {
   if (initialized) {
     return;
   }
+
+  const token = process.env.NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN;
+  const host = process.env.NEXT_PUBLIC_POSTHOG_HOST;
 
   if (!token) {
     return;
@@ -27,16 +30,12 @@ function initPosthog(token?: string, host?: string) {
 
 export function PosthogProvider({
   children,
-  token,
-  host,
 }: {
   children: React.ReactNode;
-  token?: string;
-  host?: string;
 }) {
   useEffect(() => {
-    initPosthog(token, host);
-  }, [host, token]);
+    initPosthog();
+  }, []);
 
   return <>{children}</>;
 }
