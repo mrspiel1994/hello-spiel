@@ -13,11 +13,6 @@ function initPosthog() {
   const token = process.env.NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN;
   const host = process.env.NEXT_PUBLIC_POSTHOG_HOST;
 
-  console.log('[posthog] init env', {
-    hasToken: Boolean(token),
-    host: host ?? '/ingest',
-  });
-
   if (!token) {
     return;
   }
