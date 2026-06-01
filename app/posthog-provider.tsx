@@ -28,6 +28,10 @@ function initPosthog() {
 
 export function PosthogProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
+    console.log('[posthog] provider mounted', {
+      hasToken: Boolean(process.env.NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN),
+      host: process.env.NEXT_PUBLIC_POSTHOG_HOST ?? '/ingest',
+    });
     initPosthog();
   }, []);
 
