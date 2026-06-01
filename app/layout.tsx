@@ -29,6 +29,12 @@ export default function RootLayout({
   const posthogToken = process.env.NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN;
   const posthogHost = process.env.NEXT_PUBLIC_POSTHOG_HOST;
 
+  console.log('[posthog][server] layout env', {
+    hasToken: Boolean(posthogToken),
+    tokenPrefix: posthogToken?.slice(0, 8) ?? null,
+    host: posthogHost ?? null,
+  });
+
   return (
     <html
       lang="en"

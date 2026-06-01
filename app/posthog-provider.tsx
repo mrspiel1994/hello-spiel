@@ -35,6 +35,11 @@ export function PosthogProvider({
   host?: string;
 }) {
   useEffect(() => {
+    console.log('[posthog][client] provider props', {
+      hasToken: Boolean(token),
+      tokenPrefix: token?.slice(0, 8) ?? null,
+      host: host ?? null,
+    });
     initPosthog(token, host);
   }, [host, token]);
 
