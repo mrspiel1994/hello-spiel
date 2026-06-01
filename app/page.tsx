@@ -2,9 +2,11 @@
 
 import { useEffect } from 'react';
 import posthog from 'posthog-js';
+import { initPosthog } from '../instrumentation-client';
 
 export default function Home() {
   useEffect(() => {
+    initPosthog();
     posthog.capture('home_page_viewed', {
       referrer: document.referrer || null,
       dark_mode: window.matchMedia('(prefers-color-scheme: dark)').matches,
