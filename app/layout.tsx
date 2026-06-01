@@ -26,13 +26,18 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const posthogToken = process.env.NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN;
+  const posthogHost = process.env.NEXT_PUBLIC_POSTHOG_HOST;
+
   return (
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <PosthogProvider>{children}</PosthogProvider>
+        <PosthogProvider token={posthogToken} host={posthogHost}>
+          {children}
+        </PosthogProvider>
       </body>
     </html>
   );
